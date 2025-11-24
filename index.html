@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable System - Select Role</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="role-selection-container">
+        <div class="role-selection-card">
+            <span class="eyebrow">Smart Scheduling Suite</span>
+            <div class="glow-icon" aria-hidden="true">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h2>Welcome to Timetable System</h2>
+            <p class="role-subtitle section-lede">Choose the portal that matches your role to jump straight into your personalized workspace.</p>
+            <div class="role-buttons">
+                <button class="role-button" onclick="selectRole('admin')">
+                    <span class="role-button-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </span>
+                    <span class="role-button-label">
+                        <span>Admin</span>
+                        <span class="role-button-subtext">Oversee schedules, staff, and announcements</span>
+                    </span>
+                </button>
+                <button class="role-button" onclick="selectRole('teacher')">
+                    <span class="role-button-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </span>
+                    <span class="role-button-label">
+                        <span>Teacher</span>
+                        <span class="role-button-subtext">Review classes and track attendance</span>
+                    </span>
+                </button>
+                <button class="role-button" onclick="selectRole('student')">
+                    <span class="role-button-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </span>
+                    <span class="role-button-label">
+                        <span>Student</span>
+                        <span class="role-button-subtext">Stay on top of your timetable and progress</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectRole(role) {
+            window.location.href = `login.html?role=${role}`;
+        }
+    </script>
+</body>
+</html>
