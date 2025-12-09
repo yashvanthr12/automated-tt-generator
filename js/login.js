@@ -15,12 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Display role indicator
+    // Display role indicator (now handled in HTML)
     const roleDisplay = role.charAt(0).toUpperCase() + role.slice(1);
     roleIndicator.textContent = `Logging in as ${roleDisplay}`;
     roleIndicator.style.color = 'var(--primary-color)';
     roleIndicator.style.fontWeight = '600';
     roleIndicator.style.marginBottom = '20px';
+    roleIndicator.style.display = 'block'; // Show the indicator
 
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -46,34 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Teacher and Student continue with dummy login (no validation)
 
-        // Simulate login (replace with actual fetch to backend)
+        // Login will be handled by Flask backend later
         console.log('Attempting login with:', { username, password, role });
-
-        // Placeholder for fetch API
-        // fetch('/api/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ username, password, role })
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     if (data.success) {
-        //         localStorage.setItem('jwt_token', data.token); // Store JWT
-        //         localStorage.setItem('user_role', role);
-        //         window.location.href = `/${role}.html`;
-        //     } else {
-        //         showError(data.message || 'Login failed. Invalid credentials.');
-        //     }
-        // })
-        // .catch(error => {
-        //     console.error('Login error:', error);
-        //     showError('An error occurred during login. Please try again.');
-        // });
-
-        // --- SIMULATED SUCCESSFUL LOGIN FOR DEMO ---
-        // In a real app, you'd get a token from the backend after successful auth
         const dummyToken = 'your_dummy_jwt_token_for_' + role;
         localStorage.setItem('jwt_token', dummyToken);
         localStorage.setItem('user_role', role); // Store the role
@@ -100,4 +75,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 });
-

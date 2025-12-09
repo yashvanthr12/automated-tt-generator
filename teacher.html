@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+        // Check if user is authenticated
+        const token = localStorage.getItem('jwt_token');
+        const userRole = localStorage.getItem('user_role');
+        
+        // For teacher, we still want to show the login page, so we don't redirect
+        // But we can set a flag to skip login if needed
+        if (token && userRole === 'teacher') {
+            // User is already authenticated, but we still go to login page for now
+            // This can be modified later if needed
+        }
+    </script>
+    
     <div class="dashboard-container" id="teacherDashboard">
         <button class="hamburger-menu" id="hamburgerMenu"><i class="fas fa-bars"></i></button>
 

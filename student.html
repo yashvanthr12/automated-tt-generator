@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+        // Check if user is authenticated
+        const token = localStorage.getItem('jwt_token');
+        const userRole = localStorage.getItem('user_role');
+        
+        // If not authenticated or not a student, redirect to role selection
+        if (!token || userRole !== 'student') {
+            window.location.href = 'index.html';
+        }
+        
+        // Override the common.js authentication check for students
+        // This prevents the common.js from redirecting back to index.html
+        window.skipCommonAuth = true;
+    </script>
+    
     <div class="dashboard-container" id="studentDashboard">
         <button class="hamburger-menu" id="hamburgerMenu"><i class="fas fa-bars"></i></button>
 
@@ -170,6 +185,19 @@
         </div>
     </div>
 
+    <script>
+        // Modify the common.js authentication check to skip for students
+        const originalCheckAuthentication = checkAuthentication;
+        checkAuthentication = function() {
+            // If we've set the skip flag, bypass authentication
+            if (window.skipCommonAuth) {
+                return true;
+            }
+            // Otherwise, use the original function
+            return originalCheckAuthentication ? originalCheckAuthentication() : true;
+        };
+    </script>
+    
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script src="common.js"></script>
     <script src="js/ui-enhancements.js"></script>

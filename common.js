@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Check if user is authenticated
 function checkAuthentication() {
+    // If skipCommonAuth is set (e.g., for students who bypass login), skip authentication
+    if (window.skipCommonAuth) {
+        return true;
+    }
+    
     const token = localStorage.getItem('jwt_token');
     const userRole = localStorage.getItem('user_role');
     

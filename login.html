@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Timetable System</title>
+    <title id="pageTitle">Login - Timetable System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="login.css">
@@ -20,16 +20,16 @@
         </div>
         
         <form id="loginForm" class="login-form">
-            <!-- Admin Icon/Logo -->
+            <!-- Role Icon/Logo -->
             <div class="admin-icon-container">
                 <div class="admin-icon-glow"></div>
-                <i class="fas fa-shield-alt admin-icon"></i>
+                <i id="roleIcon" class="fas fa-shield-alt admin-icon"></i>
             </div>
             
             <!-- Header -->
             <div class="login-header">
-                <h2 class="login-title">Admin Login</h2>
-                <p class="login-subtitle">Secure access to administration dashboard</p>
+                <h2 id="loginTitle" class="login-title">Login</h2>
+                <p id="loginSubtitle" class="login-subtitle">Secure access to your dashboard</p>
             </div>
             
             <!-- Hidden role indicator (for JS) -->
@@ -64,6 +64,36 @@
         </form>
     </div>
 
+    <script>
+        // Get role from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role');
+        
+        // Validate role parameter
+        if (role && ['admin', 'teacher', 'student'].includes(role)) {
+            // Set role-specific content
+            const roleDisplay = role.charAt(0).toUpperCase() + role.slice(1);
+            
+            // Update page title
+            document.getElementById('pageTitle').textContent = `${roleDisplay} Login - Timetable System`;
+            
+            // Update login title
+            document.getElementById('loginTitle').textContent = `${roleDisplay} Login`;
+            
+            // Update subtitle
+            document.getElementById('loginSubtitle').textContent = `Secure access to ${role} dashboard`;
+            
+            // Update icon based on role
+            const roleIcon = document.getElementById('roleIcon');
+            if (role === 'teacher') {
+                roleIcon.className = 'fas fa-chalkboard-teacher admin-icon';
+            } else if (role === 'student') {
+                roleIcon.className = 'fas fa-user-graduate admin-icon';
+            }
+            // Admin keeps the shield icon
+        }
+    </script>
+    
     <script src="js/login.js"></script>
 </body>
 </html>

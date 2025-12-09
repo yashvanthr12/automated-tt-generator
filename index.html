@@ -51,7 +51,17 @@
 
     <script>
         function selectRole(role) {
-            window.location.href = `login.html?role=${role}`;
+            // For student role, go directly to dashboard without login
+            if (role === 'student') {
+                // Set a dummy token and role in localStorage for student
+                localStorage.setItem('jwt_token', 'student_dummy_token');
+                localStorage.setItem('user_role', 'student');
+                localStorage.setItem('username', 'Student User');
+                window.location.href = 'student.html';
+            } else {
+                // For admin and teacher, go to login page
+                window.location.href = `login.html?role=${role}`;
+            }
         }
     </script>
 </body>
